@@ -1,0 +1,5 @@
+C:\Users\Stefanno\Documents\Visual Studio 2015\Projects\MSCI 332 Heuristic\MSCI 332 Heuristic\bin\Debug\MSCI 332 Heuristic.exe.config
+C:\Users\Stefanno\Documents\Visual Studio 2015\Projects\MSCI 332 Heuristic\MSCI 332 Heuristic\bin\Debug\MSCI 332 Heuristic.exe
+C:\Users\Stefanno\Documents\Visual Studio 2015\Projects\MSCI 332 Heuristic\MSCI 332 Heuristic\bin\Debug\MSCI 332 Heuristic.pdb
+C:\Users\Stefanno\Documents\Visual Studio 2015\Projects\MSCI 332 Heuristic\MSCI 332 Heuristic\obj\Debug\MSCI 332 Heuristic.exe
+C:\Users\Stefanno\Documents\Visual Studio 2015\Projects\MSCI 332 Heuristic\MSCI 332 Heuristic\obj\Debug\MSCI 332 Heuristic.pdb

@@ -74,15 +74,43 @@ namespace MSCI_332_Heuristic
                 row = matrix.ReadLine();
             }
 
+            StreamWriter sw = new StreamWriter("results.txt");
+            int nodes_count = 0;
             Dictionary<int, Stack<int>> complete_paths = new Dictionary<int, Stack<int>>();
             for (int k = 0; k < connections_i[0].Count; ++k)
             {
                 if (connections_i[0][k].visited == false && connections_i[0][k].value > 0)
                 {
                     connections_i[0][k].visited = true;
-                    complete_paths.Add(k, NextNodeSearch(connections_i, k));
+                    Stack<int> path = NextNodeSearch(connections_i, k);
+                    complete_paths.Add(k, path);
+                    Stack<int> tmp_path = complete_paths[k];
+                    List<int> visited_columns = new List<int>();
+                    while (tmp_path.Count > 0)
+                    {
+                        int node = tmp_path.Pop();
+                        ++nodes_count;
+                        Console.Write(node + " ");
+                        sw.Write(node + " ");
+                        visited_columns.Add(node);
+                    }
+                    Console.WriteLine();
+                    sw.WriteLine();
+                    for (int l = 0; l < connections_i.Count; ++l)
+                    {
+                        for (int m = 1; m < connections_i[l].Count; ++m)
+                        {
+                            if (visited_columns.Contains(m))
+                            {
+                                connections_i[l][m].visited = true;
+                            }
+                        }
+                    }
                 }
             }
+            Console.WriteLine(nodes_count);
+            sw.WriteLine("Count:" + nodes_count);
+            sw.Close();
             Console.WriteLine("DONE");
         }
 
@@ -102,7 +130,9 @@ namespace MSCI_332_Heuristic
                     }
                     else
                     {
-                        return NextNodeSearch(matrix, j);
+                        Stack<int> path = NextNodeSearch(matrix, j);
+                        path.Push(flight);
+                        return path;
                     }
                 }
             }

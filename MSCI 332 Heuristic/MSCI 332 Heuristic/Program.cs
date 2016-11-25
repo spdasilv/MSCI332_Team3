@@ -90,11 +90,11 @@ namespace MSCI_332_Heuristic
             int nodes_count = 0;
             int iteration = 0;
             List<int> priority_list = new List<int>();
-            while (iteration < 101)
+            while (iteration < 1001)
             {
                 ++iteration;
                 nodes_count = 0;
-                Console.WriteLine("Iteration " + iteration);
+                sw.WriteLine("Iteration " + iteration);
                 List<int> visited_nodes = new List<int>();
                 for (int k = 0; k < connections_i[0].Count; ++k)
                 {
@@ -107,12 +107,10 @@ namespace MSCI_332_Heuristic
                         {
                             int node = path.Pop();
                             ++nodes_count;
-                            Console.Write(node + " ");
-                            sw.Write(node + "> ");
+                            sw.Write(node + "->");
                             visited_nodes.Add(node);
                             visited_columns.Add(node);
                         }
-                        Console.WriteLine();
                         sw.WriteLine();
                         for (int l = 0; l < connections_i.Count; ++l)
                         {
@@ -152,14 +150,13 @@ namespace MSCI_332_Heuristic
                         }
                     }
                     connections_i = ChangePriority(connections_i, priority_list);
+                    connections_i[0] = Shuffle(connections_i[0]);
                 }
                 else
                 {
                     break;
                 }
             }
-            
-            Console.WriteLine(nodes_count);
             sw.WriteLine("Count:" + nodes_count);
             sw.Close();
             Console.WriteLine("DONE");
@@ -179,6 +176,21 @@ namespace MSCI_332_Heuristic
                 }
             }
             return tmp_matrix;
+        }
+
+        public static List<Node> Shuffle(List<Node> list)
+        {
+            var rnd = new Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rnd.Next(n + 1);
+                Node value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+            return list;
         }
 
         public static Stack<int> NextNodeSearch(Dictionary<int, List<Node>> matrix, int flight)
